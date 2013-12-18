@@ -1,6 +1,6 @@
 = gschalor
 
-Description goes here.
+A library for fetching author, paper and citation information for Google Scholar.
 
 == Contributing to gschalor
  

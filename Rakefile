@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "gschalor"
   gem.homepage = "http://github.com/5kg/gschalor"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A library for fetching information form Google Scholar}
+  gem.description = %Q{A library for fetching author, paper and citation information for Google Scholar}
   gem.email = "soariez@gmail.com"
   gem.authors = ["Zifei Tong"]
   # dependencies defined in Gemfile
