@@ -16,3 +16,5 @@ require 'gscholar'
 
 class Test::Unit::TestCase
 end
+
+require 'pry'
