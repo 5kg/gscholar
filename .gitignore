@@ -5,6 +5,9 @@ rdoc
 doc
 .yardoc
 
+# simplecov generated
+coverage
+
 # bundler
 .bundle
 Gemfile.lock
