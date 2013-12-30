@@ -20,7 +20,7 @@ module GScholar
 
     def citations(range = nil)
       rst = []
-      rst += Utils.fetch(citations_url).links_with(:text => "Related articles").
+      rst += Utils.fetch(citations_url(rst.size)).links_with(:text => "Related articles").
                map {|link| Citation.new(link.href[/related:([^:]+):/, 1]) } until rst.size == cited
       rst
     end
