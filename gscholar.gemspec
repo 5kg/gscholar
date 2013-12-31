@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "gscholar.gemspec",
     "lib/gscholar.rb",
     "lib/gscholar/citation.rb",
     "lib/gscholar/paper.rb",
