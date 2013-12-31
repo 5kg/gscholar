@@ -7,6 +7,9 @@ module GScholar
       def initialize
         @cache = {}
         @agent = Mechanize.new
+        @agent.pluggable_parser['text/plain'] = TextPlainParser
+        # Without changing user-agent, google will not return utf-8 page
+        @agent.user_agent_alias = 'Mac Safari'
 
         # hack to enable BibTeX download
         scisig = @agent.get('http://scholar.google.com/scholar_settings').
@@ -16,6 +19,8 @@ module GScholar
 
       def fetch(url)
         @cache[url] ||= @agent.get(url)
+        p @cache[url].response.to_hash
+        @cache[url]
       end
     end
 
