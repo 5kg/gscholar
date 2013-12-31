@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "gscholar"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Zifei Tong"]
@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
     "lib/gscholar/utils.rb",
     "lib/gscholar/utils/fetcher.rb",
     "lib/gscholar/utils/lazy_proxy.rb",
+    "lib/gscholar/utils/text_plain_parser.rb",
     "test/helper.rb",
     "test/test_fetcher.rb",
     "test/test_lazy_proxy.rb",
