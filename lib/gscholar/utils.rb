@@ -3,6 +3,9 @@ require 'gscholar/utils/lazy_proxy'
 
 module GScholar
   module Utils
-    extend Fetcher
+    def self.fetch(url)
+      @fetcher ||= Fetcher.new
+      @fetcher.fetch(url)
+    end
   end
 end
