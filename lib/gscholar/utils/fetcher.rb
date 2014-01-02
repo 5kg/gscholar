@@ -19,8 +19,6 @@ module GScholar
 
       def fetch(url)
         @cache[url] ||= @agent.get(url)
-        p @cache[url].response.to_hash
-        @cache[url]
       end
     end
 
