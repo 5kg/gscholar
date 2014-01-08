@@ -8,5 +8,9 @@ module GScholar
       @fetcher ||= Fetcher.new
       @fetcher.fetch(url)
     end
+
+    def self.reset_fetcher
+      @fetcher = nil
+    end
   end
 end
