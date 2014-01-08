@@ -23,7 +23,7 @@ module GScholar
           @cache[url] ||= @agent.get(url)
         rescue Mechanize::ResponseCodeError => e
           case e.response_code
-          when 403
+          when '403'
             reset
             retry
           else
