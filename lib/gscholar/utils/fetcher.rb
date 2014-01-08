@@ -10,11 +10,12 @@ module GScholar
         @agent.pluggable_parser['text/plain'] = TextPlainParser
         # Without changing user-agent, google will not return utf-8 page
         @agent.user_agent_alias = 'Mac Safari'
+        hack
+      end
 
-        # hack to enable BibTeX download
-        scisig = @agent.get('http://scholar.google.com/scholar_settings').
-                   form_with(:action => "/scholar_setprefs").field_with(:name => 'scisig').value
-        @agent.get("http://scholar.google.com/scholar_setprefs?scisig=#{scisig}&num=20&scis=yes&scisf=4&instq=&save=")
+      def reset
+        @agent.reset
+        hack
       end
 
       def fetch(url)
@@ -23,12 +24,20 @@ module GScholar
         rescue Mechanize::ResponseCodeError => e
           case e.response_code
           when 403
-            @agent.reset
+            reset
             retry
           else
             raise
           end
         end
+      end
+
+      private
+      # hack to enable BibTeX download
+      def hack
+        scisig = @agent.get('http://scholar.google.com/scholar_settings').
+                   form_with(:action => "/scholar_setprefs").field_with(:name => 'scisig').value
+        @agent.get("http://scholar.google.com/scholar_setprefs?scisig=#{scisig}&num=20&scis=yes&scisf=4&instq=&save=")
       end
     end
 
