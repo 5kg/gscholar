@@ -18,7 +18,17 @@ module GScholar
       end
 
       def fetch(url)
-        @cache[url] ||= @agent.get(url)
+        begin
+          @cache[url] ||= @agent.get(url)
+        rescue Mechanize::ResponseCodeError => e
+          case e.response_code
+          when 403
+            @agent.reset
+            retry
+          else
+            raise
+          end
+        end
       end
     end
 
