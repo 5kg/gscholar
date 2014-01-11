@@ -20,9 +20,11 @@ module GScholar
 
     def citations(range = nil)
       rst = []
-      rst += Utils.fetch(citations_url(rst.size)).links_with(:text => "Import into BibTeX").
-               map {|link| Citation.new(link.href[/info:([^:]+):/, 1]) } until rst.size == cited
-      rst
+      while true
+        links = Utils.fetch(citations_url(rst.size, range)).links_with(:text => "Import into BibTeX")
+        return rst if links.empty?
+        rst += links.map {|link| Citation.new(link.href[/info:([^:]+):/, 1]) }
+      end
     end
 
     private
@@ -34,8 +36,8 @@ module GScholar
       "http://scholar.google.com/scholar?cluster=#{@id}"
     end
 
-    def citations_url(start = 0)
-      "http://scholar.google.com/scholar?cites=#{@id}&num=20&start=#{start}"
+    def citations_url(start = 0, range = nil)
+      "http://scholar.google.com/scholar?cites=#{@id}&num=20&start=#{start}&as_ylo=#{range}"
     end
 
     def key
